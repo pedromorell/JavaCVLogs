@@ -3,7 +3,7 @@ import xlrd
 import unicodecsv as csv
 
 # Lectura del Excel con los logs
-workbook = xlrd.open_workbook('./src/main/webapp/python/Logs-FC-GrupoE-Julio2017_Limpio.xlsx')
+workbook = xlrd.open_workbook('./python/ficheros/Logs-FC-GrupoE-Julio2017_Limpio.xlsx')
 worksheet = workbook.sheet_by_index(0)
 num_rows = worksheet.nrows - 1
 curr_row = 0
