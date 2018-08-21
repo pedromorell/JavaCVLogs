@@ -12,6 +12,7 @@ public class Controller {
 		main.cleanLogs();
 		
 		WekaDriver weka = new WekaDriver();
+		weka.visualize();
 	}
 	
 	public static Controller getInstance() {
