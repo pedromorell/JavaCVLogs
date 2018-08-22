@@ -6,7 +6,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		HomeGUI home = new HomeGUI();
+		HomeGUI home = HomeGUI.getInstance();
 		home.start();
 	}
 

@@ -7,12 +7,12 @@ public class Controller {
 	
 	private static Controller INSTANCE = null;
 	
-	public void obtainResults() {
+	public void obtainResults(int x, int y, int c) {
 		LogsCleaner main = new LogsCleaner();
 		main.cleanLogs();
 		
 		WekaDriver weka = new WekaDriver();
-		weka.visualize();
+		weka.visualize(x, y, c);
 	}
 	
 	public static Controller getInstance() {

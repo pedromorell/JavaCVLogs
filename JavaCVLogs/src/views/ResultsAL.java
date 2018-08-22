@@ -3,14 +3,65 @@ package views;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 import controller.Controller;
 
 public class ResultsAL implements ActionListener {
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		Controller.getInstance().obtainResults();
+		HomeGUI home = HomeGUI.getInstance();
+		
+		String inputF = home.getInputFichero();
+		String inputA = home.getInputAlgoritmo();
+		
+		if (inputF.equals("---") || inputA.equals("---")) {
+			JOptionPane.showMessageDialog(null, "Debes seleccionar un fichero y un algoritmo.");
+			return;
+		}
+		
+		String parametroX = home.getInputX();
+		String parametroY = home.getInputY();
+		String parametroC = home.getInputC();
+				
+		if (parametroX.equals("---") || parametroY.equals("---") || parametroC.equals("---")) {
+			JOptionPane.showMessageDialog(null, "Debes seleccionar un valor para cada parámetro.");
+			return;
+		}
+		int x, y, c;
+        switch (parametroX) {
+            case "Hora":  x = 0;
+                     break;
+            case "Id de usuario":  x = 4;
+                     break;
+            default: x = 0;
+                     break;
+        }
+        switch (parametroY) {
+	        case "Contexto":  y = 1;
+	                 break;
+	        case "Componente":  y = 2;
+	                 break;
+	        case "Descripción del evento":  y = 5;
+            		break;
+	        case "Id de módulo":  y = 6;
+            		break;
+	        default: y = 1;
+	                 break;
+        }
+        switch (parametroC) {
+	        case "Contexto":  c = 1;
+			        break;
+			case "Descripción del evento":  c = 5;
+					break;
+			case "Id de módulo":  c = 6;
+					break;
+	        default: c = 1;
+	                 break;
+        }
+		Controller.getInstance().obtainResults(x, y, c);
 	}
 
 }
