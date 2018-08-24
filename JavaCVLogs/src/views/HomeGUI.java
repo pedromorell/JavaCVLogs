@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.util.Enumeration;
 
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -24,7 +23,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
@@ -46,13 +44,17 @@ public class HomeGUI {
 	private static HomeGUI INSTANCE = null;
 	
 	public HomeGUI() {
+		init();
+	}
+	
+	private void init() {
 		setUIFont (new javax.swing.plaf.FontUIResource("Arial",Font.PLAIN,14));
 
 		mainFrame = new JFrame("Home");
-		mainFrame.setSize(1024,700);
+		mainFrame.setMinimumSize(new Dimension(900,700));
 		mainFrame.setLocationRelativeTo(null);
 		mainFrame.setLayout(new GridBagLayout());
-		mainFrame.setBackground(Color.WHITE);
+		
 		GridBagConstraints c = new GridBagConstraints();
 		
 		try {
@@ -190,13 +192,6 @@ public class HomeGUI {
 			panelSubmit = new JPanel(new GridBagLayout());
 			
 			submit = new JButton();
-			submit.setBackground(new Color(26,117,255));
-			submit.setForeground(Color.WHITE);
-			submit.setFocusPainted(false);
-			submit.setFont(new Font("Arial", Font.PLAIN, 18));
-			submit.setPreferredSize(new Dimension(240,40));
-			Border emptyBorder = BorderFactory.createEmptyBorder();
-			submit.setBorder(emptyBorder);
 			submit.addActionListener(new ResultsAL());
 			submit.setText("Obtener resultados");
 			
@@ -208,17 +203,15 @@ public class HomeGUI {
 			
 			mainFrame.add(panelSubmit, c);
 			
-			// Full screen
-			mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+			
+			mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH); // Full screen
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 	
 	public void start() {
-		mainFrame.setResizable(false);
 		mainFrame.setVisible(true);
 	}
 	

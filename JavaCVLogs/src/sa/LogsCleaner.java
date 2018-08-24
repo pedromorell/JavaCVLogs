@@ -5,10 +5,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class LogsCleaner {
-	public void cleanLogs() {
+	public void cleanLogs(String arg) {
 		final String dir = System.getProperty("user.dir");
 		try {
-			Process proc = Runtime.getRuntime().exec("python " + dir + "\\python\\limpiar.py");
+			Process proc = Runtime.getRuntime().exec("python " + dir + "\\python\\limpiar.py " + arg);
 			BufferedReader stdInput = new BufferedReader(new 
 				     InputStreamReader(proc.getInputStream()));
 

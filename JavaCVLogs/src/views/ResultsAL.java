@@ -61,7 +61,9 @@ public class ResultsAL implements ActionListener {
 	        default: c = 1;
 	                 break;
         }
-		Controller.getInstance().obtainResults(x, y, c);
+		Controller.getInstance().obtainResults(inputF, x, y, c);
+		ResultGUI result = new ResultGUI(parametroX, parametroY, parametroC);
+		result.start();
 	}
 
 }

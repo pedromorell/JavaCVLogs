@@ -7,9 +7,9 @@ public class Controller {
 	
 	private static Controller INSTANCE = null;
 	
-	public void obtainResults(int x, int y, int c) {
+	public void obtainResults(String fichero, int x, int y, int c) {
 		LogsCleaner main = new LogsCleaner();
-		main.cleanLogs();
+		main.cleanLogs(fichero);
 		
 		WekaDriver weka = new WekaDriver();
 		weka.visualize(x, y, c);

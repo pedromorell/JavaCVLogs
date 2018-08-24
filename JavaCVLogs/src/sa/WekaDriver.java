@@ -35,9 +35,10 @@ public class WekaDriver {
 			jf.setVisible(true);
 			
 			// Guardar diagrama en fichero jpg
-			File file1 = new File("imagen.jpg");
+			File file1 = new File("src\\imagen.jpg");
 			JPEGWriter writer = new JPEGWriter(plot, file1);
 			writer.generateOutput();
+			jf.setVisible(false);
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
