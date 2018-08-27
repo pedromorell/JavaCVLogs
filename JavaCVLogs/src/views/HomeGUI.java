@@ -272,5 +272,9 @@ public class HomeGUI {
 	public String getInputC() {
 		return inputC.getSelectedItem().toString();
 	}
+	
+	public void toBack() {
+		this.mainFrame.toBack();
+	}
 
 }

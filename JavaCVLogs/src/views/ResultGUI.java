@@ -1,6 +1,7 @@
 package views;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.image.BufferedImage;
@@ -31,6 +32,8 @@ public class ResultGUI {
 	private void init() {
 		mainFrame = new JFrame();
 		mainFrame.setLayout(new GridBagLayout());
+		mainFrame.setMinimumSize(new Dimension(900,800));
+		mainFrame.setLocationRelativeTo(null);
 		GridBagConstraints c = new GridBagConstraints();
 		
 		BufferedImage myPicture;
@@ -68,8 +71,9 @@ public class ResultGUI {
 			c.gridx = 0;
 			c.gridy = 3;
 			mainFrame.add(panel3, c);
-			
+			mainFrame.toFront();
 			mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH); // Full screen
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

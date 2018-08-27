@@ -1,5 +1,6 @@
 package sa;
 
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 
@@ -38,7 +39,7 @@ public class WekaDriver {
 			File file1 = new File("src\\imagen.jpg");
 			JPEGWriter writer = new JPEGWriter(plot, file1);
 			writer.generateOutput();
-			jf.setVisible(false);
+
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
