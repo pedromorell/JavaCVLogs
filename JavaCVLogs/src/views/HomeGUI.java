@@ -103,6 +103,7 @@ public class HomeGUI {
 			}
 			inputAlgoritmo = new JComboBox<String>();
 			inputAlgoritmo.addItem("---");
+			inputAlgoritmo.addItem("Visualize");
 			inputAlgoritmo.addItem("Clustering");
 			
 			mainInputs.setLayout(new GridLayout(4, 1));
@@ -170,7 +171,7 @@ public class HomeGUI {
 			inputAlgoritmo.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					if (inputAlgoritmo.getSelectedItem().toString().equals("Clustering")) {
+					if (inputAlgoritmo.getSelectedItem().toString().equals("Visualize")) {
 						c.gridx = 0;
 						c.gridy = 3;
 						mainInputs.setBorder(new EmptyBorder(0,0,25,0));
@@ -192,7 +193,7 @@ public class HomeGUI {
 			panelSubmit = new JPanel(new GridBagLayout());
 			
 			submit = new JButton();
-			submit.addActionListener(new ResultsAL());
+			submit.addActionListener(new ResultsAL(inputAlgoritmo.getSelectedItem().toString()));
 			submit.setText("Obtener resultados");
 			
 			c.gridx = 0;

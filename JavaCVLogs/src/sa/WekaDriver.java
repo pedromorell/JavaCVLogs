@@ -47,5 +47,12 @@ public class WekaDriver {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
+	}
+	
+	public void clustering(int x, int y, int c) {
+		CSVLoader loader = new CSVLoader();
+		File file = new File("LogsAmpliado.csv");
 	}
 }

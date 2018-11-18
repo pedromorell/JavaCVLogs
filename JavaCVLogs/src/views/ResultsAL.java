@@ -9,6 +9,12 @@ import controller.Controller;
 
 public class ResultsAL implements ActionListener {
 	
+	private String algoritmo;
+	
+	public ResultsAL(String alg) {
+		algoritmo = alg;
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -61,7 +67,8 @@ public class ResultsAL implements ActionListener {
 	        default: c = 1;
 	                 break;
         }
-		Controller.getInstance().obtainResults(inputF, x, y, c);
+        
+		Controller.getInstance().obtainResults(inputF, x, y, c, algoritmo);
 		ResultGUI result = new ResultGUI(parametroX, parametroY, parametroC);
 		result.start();
 	}
