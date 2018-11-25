@@ -22,6 +22,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -38,6 +39,7 @@ public class HomeGUI {
 	private JComboBox<String> inputX;
 	private JComboBox<String> inputY;
 	private JComboBox<String> inputC;
+	private JTextField inputD;
 	private JPanel panelSubmit;
 	private JButton submit;
 		
@@ -118,10 +120,10 @@ public class HomeGUI {
 			mainFrame.add(mainInputs, c);
 			
 			
-			// Secondary inputs
+			// Visualize inputs
 			secondaryInputs = new JPanel();
 			secondaryInputs.setPreferredSize(new Dimension(700, 180));
-			
+						
 			inputX = new JComboBox<String>();
 			inputX.addItem("---");
 			inputX.addItem("Hora");
@@ -137,6 +139,7 @@ public class HomeGUI {
 			inputC.addItem("Contexto");
 			inputC.addItem("Descripción del evento");
 			inputC.addItem("Id de módulo");
+			inputD = new JTextField();
 			
 			JPanel auxPanel1 = new JPanel();
 			auxPanel1.setLayout(new GridLayout(2,1));
@@ -155,6 +158,12 @@ public class HomeGUI {
 			auxPanel3.add(color);
 			auxPanel3.add(inputC);
 			
+			JPanel auxPanel4 = new JPanel();
+			auxPanel4.setLayout(new GridLayout(2,1));
+			JLabel numClusters = new JLabel("Número de clusters");
+			auxPanel4.add(numClusters);
+			auxPanel4.add(inputD);
+			
 			inputX.setPreferredSize(new Dimension(230,25));
 			auxPanel1.setBorder(new EmptyBorder(25, 10, 0, 30));
 			secondaryInputs.add(auxPanel1);
@@ -167,7 +176,12 @@ public class HomeGUI {
 			auxPanel3.setBorder(new EmptyBorder(10, 0, 10, 0));
 			secondaryInputs.add(auxPanel3);
 			
+			inputD.setPreferredSize(new Dimension(230,25));
+			auxPanel4.setBorder(new EmptyBorder(10, 0, 10, 0));
+			secondaryInputs.add(auxPanel4);
+			
 			secondaryInputs.setBorder(new LineBorder(Color.black, 1));
+			
 			inputAlgoritmo.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -176,9 +190,21 @@ public class HomeGUI {
 						c.gridy = 3;
 						mainInputs.setBorder(new EmptyBorder(0,0,25,0));
 						mainInputs.setPreferredSize(new Dimension(700, 125));
+						secondaryInputs.remove(auxPanel4);
+						secondaryInputs.add(auxPanel3);
 						mainFrame.add(secondaryInputs, c);
 						mainFrame.revalidate();
-					} else {
+					} else if (inputAlgoritmo.getSelectedItem().toString().equals("Clustering")) {
+						c.gridx = 0;
+						c.gridy = 3;
+						mainInputs.setBorder(new EmptyBorder(0,0,25,0));
+						mainInputs.setPreferredSize(new Dimension(700, 125));
+						secondaryInputs.remove(auxPanel3);
+						secondaryInputs.add(auxPanel4);
+						mainFrame.add(secondaryInputs, c);
+						mainFrame.revalidate();
+					}
+					else {
 						mainInputs.setBorder(null);
 						mainInputs.setPreferredSize(new Dimension(700, 100));
 						mainFrame.remove(secondaryInputs);

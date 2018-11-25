@@ -14,7 +14,9 @@ public class Controller {
 		WekaDriver weka = new WekaDriver();
 		if (algoritmo.equals("Visualize"))
 			weka.visualize(x, y, c);
-		else if (algoritmo.equals("Clustering")) {}
+		else if (algoritmo.equals("Clustering")) {
+			weka.clustering(x, y, c);
+		}
 			
 	}
 	
