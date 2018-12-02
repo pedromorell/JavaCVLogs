@@ -8,13 +8,7 @@ import javax.swing.JOptionPane;
 import controller.Controller;
 
 public class ResultsAL implements ActionListener {
-	
-	private String algoritmo;
-	
-	public ResultsAL(String alg) {
-		algoritmo = alg;
-	}
-	
+		
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -30,10 +24,19 @@ public class ResultsAL implements ActionListener {
 		
 		String parametroX = home.getInputX();
 		String parametroY = home.getInputY();
-		String parametroC = home.getInputC();
-				
-		if (parametroX.equals("---") || parametroY.equals("---") || parametroC.equals("---")) {
+		String parametroC = "";
+		if (home.getInputC() != null)
+			parametroC = home.getInputC();
+		int numClusters = 0;
+		numClusters = home.getInputD();
+		System.out.println(numClusters);
+		if (parametroX.equals("---") || parametroY.equals("---") 
+				|| (home.getInputAlgoritmo().equals("Visualize") && parametroC.equals("---"))) {
 			JOptionPane.showMessageDialog(null, "Debes seleccionar un valor para cada parámetro.");
+			return;
+		}
+		if (home.getInputAlgoritmo().equals("Clustering") && numClusters <= 0) {
+			JOptionPane.showMessageDialog(null, "El número de clusters debe ser mayor que cero.");
 			return;
 		}
 		int x, y, c;
@@ -68,8 +71,14 @@ public class ResultsAL implements ActionListener {
 	                 break;
         }
         
-		Controller.getInstance().obtainResults(inputF, x, y, c, algoritmo);
-		ResultGUI result = new ResultGUI(parametroX, parametroY, parametroC);
+        Controller controlador = Controller.getInstance();
+        
+        if (home.getInputAlgoritmo().equals("Visualize"))
+        	controlador.obtainResultsVisualize(inputF, x, y, c);
+        else if (home.getInputAlgoritmo().equals("Clustering"))
+        	controlador.obtainResultsClustering(inputF, x, y, numClusters);
+        
+        ResultGUI result = new ResultGUI(parametroX, parametroY, parametroC);
 		result.start();
 	}
 

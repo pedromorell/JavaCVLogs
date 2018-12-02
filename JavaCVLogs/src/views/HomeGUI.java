@@ -13,16 +13,17 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.Enumeration;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -39,12 +40,13 @@ public class HomeGUI {
 	private JComboBox<String> inputX;
 	private JComboBox<String> inputY;
 	private JComboBox<String> inputC;
-	private JTextField inputD;
+	private JFormattedTextField inputD;
 	private JPanel panelSubmit;
 	private JButton submit;
 		
 	private static HomeGUI INSTANCE = null;
 	
+
 	public HomeGUI() {
 		init();
 	}
@@ -139,7 +141,7 @@ public class HomeGUI {
 			inputC.addItem("Contexto");
 			inputC.addItem("Descripción del evento");
 			inputC.addItem("Id de módulo");
-			inputD = new JTextField();
+			inputD = new JFormattedTextField(NumberFormat.getNumberInstance());
 			
 			JPanel auxPanel1 = new JPanel();
 			auxPanel1.setLayout(new GridLayout(2,1));
@@ -174,11 +176,9 @@ public class HomeGUI {
 			
 			inputC.setPreferredSize(new Dimension(230,25));
 			auxPanel3.setBorder(new EmptyBorder(10, 0, 10, 0));
-			secondaryInputs.add(auxPanel3);
 			
 			inputD.setPreferredSize(new Dimension(230,25));
 			auxPanel4.setBorder(new EmptyBorder(10, 0, 10, 0));
-			secondaryInputs.add(auxPanel4);
 			
 			secondaryInputs.setBorder(new LineBorder(Color.black, 1));
 			
@@ -193,6 +193,7 @@ public class HomeGUI {
 						secondaryInputs.remove(auxPanel4);
 						secondaryInputs.add(auxPanel3);
 						mainFrame.add(secondaryInputs, c);
+						mainFrame.repaint();
 						mainFrame.revalidate();
 					} else if (inputAlgoritmo.getSelectedItem().toString().equals("Clustering")) {
 						c.gridx = 0;
@@ -202,6 +203,7 @@ public class HomeGUI {
 						secondaryInputs.remove(auxPanel3);
 						secondaryInputs.add(auxPanel4);
 						mainFrame.add(secondaryInputs, c);
+						mainFrame.repaint();
 						mainFrame.revalidate();
 					}
 					else {
@@ -219,7 +221,7 @@ public class HomeGUI {
 			panelSubmit = new JPanel(new GridBagLayout());
 			
 			submit = new JButton();
-			submit.addActionListener(new ResultsAL(inputAlgoritmo.getSelectedItem().toString()));
+			submit.addActionListener(new ResultsAL());
 			submit.setText("Obtener resultados");
 			
 			c.gridx = 0;
@@ -302,6 +304,17 @@ public class HomeGUI {
 	
 	public void toBack() {
 		this.mainFrame.toBack();
+	}
+	
+	public int getInputD() {
+		if (inputD.getValue() != null)
+			return ((Number) inputD.getValue()).intValue();
+		else
+			return 0;
+	}
+
+	public void setInputD(JFormattedTextField inputD) {
+		this.inputD = inputD;
 	}
 
 }

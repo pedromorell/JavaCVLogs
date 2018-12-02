@@ -51,7 +51,7 @@ public class WekaDriver {
 		
 	}
 	
-	public void clustering(int x, int y, int c) {
+	public void clustering(int x, int y, int numClusters) {
 		CSVLoader loader = new CSVLoader();
 		File file = new File("LogsAmpliado.csv");
 	}

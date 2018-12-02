@@ -7,17 +7,21 @@ public class Controller {
 	
 	private static Controller INSTANCE = null;
 	
-	public void obtainResults(String fichero, int x, int y, int c, String algoritmo) {
+	public void obtainResultsVisualize(String fichero, int x, int y, int c) {
 		LogsCleaner main = new LogsCleaner();
 		main.cleanLogs(fichero);
 		
 		WekaDriver weka = new WekaDriver();
-		if (algoritmo.equals("Visualize"))
-			weka.visualize(x, y, c);
-		else if (algoritmo.equals("Clustering")) {
-			weka.clustering(x, y, c);
-		}
+		weka.visualize(x, y, c);
 			
+	}
+	
+	public void obtainResultsClustering(String fichero, int x, int y, int numClusters) {
+		LogsCleaner main = new LogsCleaner();
+		main.cleanLogs(fichero);
+		
+		WekaDriver weka = new WekaDriver();
+		weka.clustering(x, y, numClusters);
 	}
 	
 	public static Controller getInstance() {
