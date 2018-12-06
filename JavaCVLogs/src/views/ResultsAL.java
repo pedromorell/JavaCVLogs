@@ -30,8 +30,8 @@ public class ResultsAL implements ActionListener {
 		int numClusters = 0;
 		numClusters = home.getInputD();
 		System.out.println(numClusters);
-		if (parametroX.equals("---") || parametroY.equals("---") 
-				|| (home.getInputAlgoritmo().equals("Visualize") && parametroC.equals("---"))) {
+		if (home.getInputAlgoritmo().equals("Visualize") && (parametroX.equals("---") || parametroY.equals("---") 
+				|| parametroC.equals("---"))) {
 			JOptionPane.showMessageDialog(null, "Debes seleccionar un valor para cada parámetro.");
 			return;
 		}
@@ -78,8 +78,8 @@ public class ResultsAL implements ActionListener {
         else if (home.getInputAlgoritmo().equals("Clustering"))
         	controlador.obtainResultsClustering(inputF, x, y, numClusters);
         
-        ResultGUI result = new ResultGUI(parametroX, parametroY, parametroC);
-		result.start();
+        /*ResultGUI result = new ResultGUI(parametroX, parametroY, parametroC);
+		result.start();*/
 	}
 
 }

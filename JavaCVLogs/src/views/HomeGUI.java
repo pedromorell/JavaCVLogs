@@ -176,6 +176,7 @@ public class HomeGUI {
 			
 			inputC.setPreferredSize(new Dimension(230,25));
 			auxPanel3.setBorder(new EmptyBorder(10, 0, 10, 0));
+			secondaryInputs.add(auxPanel3);
 			
 			inputD.setPreferredSize(new Dimension(230,25));
 			auxPanel4.setBorder(new EmptyBorder(10, 0, 10, 0));
@@ -190,8 +191,7 @@ public class HomeGUI {
 						c.gridy = 3;
 						mainInputs.setBorder(new EmptyBorder(0,0,25,0));
 						mainInputs.setPreferredSize(new Dimension(700, 125));
-						secondaryInputs.remove(auxPanel4);
-						secondaryInputs.add(auxPanel3);
+						mainFrame.remove(auxPanel4);
 						mainFrame.add(secondaryInputs, c);
 						mainFrame.repaint();
 						mainFrame.revalidate();
@@ -200,9 +200,8 @@ public class HomeGUI {
 						c.gridy = 3;
 						mainInputs.setBorder(new EmptyBorder(0,0,25,0));
 						mainInputs.setPreferredSize(new Dimension(700, 125));
-						secondaryInputs.remove(auxPanel3);
-						secondaryInputs.add(auxPanel4);
-						mainFrame.add(secondaryInputs, c);
+						mainFrame.remove(secondaryInputs);
+						mainFrame.add(auxPanel4, c);
 						mainFrame.repaint();
 						mainFrame.revalidate();
 					}
