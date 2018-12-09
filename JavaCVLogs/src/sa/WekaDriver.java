@@ -25,24 +25,26 @@ public class WekaDriver {
 			Instances data = loader.getDataSet();
 			PlotData2D pd1 = new PlotData2D(data);
 			pd1.m_displayAllPoints = true;
-			Plot2D plot = new Plot2D();
-			plot.setMasterPlot(pd1);
-			plot.setXindex(x);
-			plot.setYindex(y);
-			plot.setCindex(c);
 			
+			VisualizePanel vp = new VisualizePanel();
+	        vp.addPlot(pd1);
+	        
+	        vp.setXIndex(x);
+	        vp.setYIndex(y);
+	        vp.setColourIndex(c);
+	        
 			// Abrir diagrama en un JFrame
 			JFrame jf = new JFrame("Diagrama");
 			jf.setSize(1024, 512);
-			jf.add(plot);
+			jf.add(vp);
 			jf.setLocationRelativeTo(null);
 			jf.setVisible(true);
 			
 			// Guardar diagrama en fichero jpg
 			File file1 = new File("src\\imagen.jpg");
-			JPEGWriter writer = new JPEGWriter(plot, file1);
+			JPEGWriter writer = new JPEGWriter(vp, file1);
 			writer.generateOutput();
-
+			
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -92,7 +94,6 @@ public class WekaDriver {
 			File file1 = new File("src\\imagen.jpg");
 			JPEGWriter writer = new JPEGWriter(vp, file1);
 			writer.generateOutput();
-	        
 	        
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

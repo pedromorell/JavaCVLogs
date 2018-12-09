@@ -41,31 +41,33 @@ public class ResultsAL implements ActionListener {
 		}
 		int x, y, c;
         switch (parametroX) {
-            case "Hora":  x = 0;
+            case "Fecha":  x = 0;
                      break;
-            case "Id de usuario":  x = 4;
+            case "Hora": x = 1;
+            		break;
+            case "Id de usuario":  x = 5;
                      break;
             default: x = 0;
                      break;
         }
         switch (parametroY) {
-	        case "Contexto":  y = 1;
+	        case "Contexto":  y = 2;
 	                 break;
-	        case "Componente":  y = 2;
+	        case "Componente":  y = 3;
 	                 break;
-	        case "Descripción del evento":  y = 5;
+	        case "Descripción del evento":  y = 6;
             		break;
-	        case "Id de módulo":  y = 6;
+	        case "Id de módulo":  y = 7;
             		break;
 	        default: y = 1;
 	                 break;
         }
         switch (parametroC) {
-	        case "Contexto":  c = 1;
+	        case "Contexto":  c = 2;
 			        break;
-			case "Descripción del evento":  c = 5;
+			case "Descripción del evento":  c = 6;
 					break;
-			case "Id de módulo":  c = 6;
+			case "Id de módulo":  c = 7;
 					break;
 	        default: c = 1;
 	                 break;

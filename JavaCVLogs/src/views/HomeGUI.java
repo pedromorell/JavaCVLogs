@@ -36,6 +36,7 @@ public class HomeGUI {
 	private JPanel mainInputs;
 	private JComboBox<String> inputFichero;
 	private JComboBox<String> inputAlgoritmo;
+	private JComboBox<String> inputFiltro;
 	private JPanel secondaryInputs;
 	private JComboBox<String> inputX;
 	private JComboBox<String> inputY;
@@ -55,7 +56,7 @@ public class HomeGUI {
 		setUIFont (new javax.swing.plaf.FontUIResource("Arial",Font.PLAIN,14));
 
 		mainFrame = new JFrame("Home");
-		mainFrame.setMinimumSize(new Dimension(900,700));
+		//mainFrame.setMinimumSize(new Dimension(900,700));
 		mainFrame.setLocationRelativeTo(null);
 		mainFrame.setLayout(new GridBagLayout());
 		
@@ -94,7 +95,7 @@ public class HomeGUI {
 			
 			// Main inputs
 			mainInputs = new JPanel();
-			mainInputs.setPreferredSize(new Dimension(700, 100));
+			mainInputs.setPreferredSize(new Dimension(700, 150));
 			inputFichero = new JComboBox<String>();
 			inputFichero.addItem("---");
 			File folder = new File(dir + "\\python\\ficheros");
@@ -110,11 +111,18 @@ public class HomeGUI {
 			inputAlgoritmo.addItem("Visualize");
 			inputAlgoritmo.addItem("Clustering");
 			
-			mainInputs.setLayout(new GridLayout(4, 1));
+			inputFiltro = new JComboBox<String>();
+			inputFiltro.addItem("---");
+			inputFiltro.addItem("Filtrar por fecha");
+			inputFiltro.addItem("Filtrar por hora");
+			
+			mainInputs.setLayout(new GridLayout(6, 1));
 			mainInputs.add(new JLabel("Fichero"));
 			mainInputs.add(inputFichero);
 			mainInputs.add(new JLabel("Algoritmo"));
 			mainInputs.add(inputAlgoritmo);
+			mainInputs.add(new JLabel("Filtro (opcional)"));
+			mainInputs.add(inputFiltro);
 			
 			c.gridx = 0;
 			c.gridy = 2;
@@ -128,6 +136,7 @@ public class HomeGUI {
 						
 			inputX = new JComboBox<String>();
 			inputX.addItem("---");
+			inputX.addItem("Fecha");
 			inputX.addItem("Hora");
 			inputX.addItem("Id de usuario");
 			inputY = new JComboBox<String>();
@@ -190,7 +199,7 @@ public class HomeGUI {
 						c.gridx = 0;
 						c.gridy = 3;
 						mainInputs.setBorder(new EmptyBorder(0,0,25,0));
-						mainInputs.setPreferredSize(new Dimension(700, 125));
+						mainInputs.setPreferredSize(new Dimension(700, 175));
 						mainFrame.remove(auxPanel4);
 						mainFrame.add(secondaryInputs, c);
 						mainFrame.repaint();
@@ -199,7 +208,7 @@ public class HomeGUI {
 						c.gridx = 0;
 						c.gridy = 3;
 						mainInputs.setBorder(new EmptyBorder(0,0,25,0));
-						mainInputs.setPreferredSize(new Dimension(700, 125));
+						mainInputs.setPreferredSize(new Dimension(700, 175));
 						mainFrame.remove(secondaryInputs);
 						mainFrame.add(auxPanel4, c);
 						mainFrame.repaint();
@@ -207,7 +216,7 @@ public class HomeGUI {
 					}
 					else {
 						mainInputs.setBorder(null);
-						mainInputs.setPreferredSize(new Dimension(700, 100));
+						mainInputs.setPreferredSize(new Dimension(700, 150));
 						mainFrame.remove(secondaryInputs);
 						mainFrame.revalidate();
 					}
