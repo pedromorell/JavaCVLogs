@@ -248,6 +248,14 @@ public class HomeGUI {
 		}
 	}
 	
+	public String getInputFiltro() {
+		return inputFiltro.getSelectedItem().toString();
+	}
+
+	public void setInputFiltro(JComboBox<String> inputFiltro) {
+		this.inputFiltro = inputFiltro;
+	}
+
 	public void start() {
 		mainFrame.setVisible(true);
 	}

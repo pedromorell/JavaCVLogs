@@ -7,7 +7,7 @@ public class Controller {
 	
 	private static Controller INSTANCE = null;
 	
-	public void obtainResultsVisualize(String fichero, int x, int y, int c) {
+	public void obtainResultsVisualize(String fichero, int x, int y, int c, String filtro) {
 		LogsCleaner main = new LogsCleaner();
 		main.cleanLogs(fichero);
 		
@@ -16,7 +16,7 @@ public class Controller {
 			
 	}
 	
-	public void obtainResultsClustering(String fichero, int x, int y, int numClusters) {
+	public void obtainResultsClustering(String fichero, int x, int y, int numClusters, String filtro) {
 		LogsCleaner main = new LogsCleaner();
 		main.cleanLogs(fichero);
 		

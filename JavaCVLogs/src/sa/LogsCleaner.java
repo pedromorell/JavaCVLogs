@@ -8,7 +8,7 @@ public class LogsCleaner {
 	public void cleanLogs(String arg) {
 		final String dir = System.getProperty("user.dir");
 		try {
-			Process proc = Runtime.getRuntime().exec("python " + dir + "\\python\\limpiar.py " + arg);
+			Process proc = Runtime.getRuntime().exec("python " + dir + "\\python\\limpiar.py " + arg + " fecha 30/03/2017 26/07/2017");
 			BufferedReader stdInput = new BufferedReader(new 
 				     InputStreamReader(proc.getInputStream()));
 

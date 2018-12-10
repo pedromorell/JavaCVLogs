@@ -73,12 +73,13 @@ public class ResultsAL implements ActionListener {
 	                 break;
         }
         
+        String filtro = home.getInputFiltro();
         Controller controlador = Controller.getInstance();
         
         if (home.getInputAlgoritmo().equals("Visualize"))
-        	controlador.obtainResultsVisualize(inputF, x, y, c);
+        	controlador.obtainResultsVisualize(inputF, x, y, c, filtro);
         else if (home.getInputAlgoritmo().equals("Clustering"))
-        	controlador.obtainResultsClustering(inputF, x, y, numClusters);
+        	controlador.obtainResultsClustering(inputF, x, y, numClusters, filtro);
         
         /*ResultGUI result = new ResultGUI(parametroX, parametroY, parametroC);
 		result.start();*/
