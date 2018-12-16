@@ -11,7 +11,6 @@ import weka.core.Instances;
 import weka.core.converters.CSVLoader;
 import weka.gui.explorer.ClustererAssignmentsPlotInstances;
 import weka.gui.visualize.JPEGWriter;
-import weka.gui.visualize.Plot2D;
 import weka.gui.visualize.PlotData2D;
 import weka.gui.visualize.VisualizePanel;
 

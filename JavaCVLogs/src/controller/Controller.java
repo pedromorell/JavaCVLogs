@@ -7,18 +7,18 @@ public class Controller {
 	
 	private static Controller INSTANCE = null;
 	
-	public void obtainResultsVisualize(String fichero, int x, int y, int c, String filtro) {
+	public void obtainResultsVisualize(String fichero, int x, int y, int c, String filtro, String param1, String param2) {
 		LogsCleaner main = new LogsCleaner();
-		main.cleanLogs(fichero);
+		main.cleanLogs(fichero, filtro, param1, param2);
 		
 		WekaDriver weka = new WekaDriver();
 		weka.visualize(x, y, c);
 			
 	}
 	
-	public void obtainResultsClustering(String fichero, int x, int y, int numClusters, String filtro) {
+	public void obtainResultsClustering(String fichero, int x, int y, int numClusters, String filtro, String param1, String param2) {
 		LogsCleaner main = new LogsCleaner();
-		main.cleanLogs(fichero);
+		main.cleanLogs(fichero, filtro, param1, param2);
 		
 		WekaDriver weka = new WekaDriver();
 		weka.clustering(x, y, numClusters);

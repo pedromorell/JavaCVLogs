@@ -25,6 +25,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
+import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
@@ -38,10 +39,14 @@ public class HomeGUI {
 	private JComboBox<String> inputAlgoritmo;
 	private JComboBox<String> inputFiltro;
 	private JPanel secondaryInputs;
+	private JPanel clusteringPanel;
+	private JPanel parametrosFiltro;
 	private JComboBox<String> inputX;
 	private JComboBox<String> inputY;
 	private JComboBox<String> inputC;
 	private JFormattedTextField inputD;
+	private JFormattedTextField parametroFiltro1;
+	private JFormattedTextField parametroFiltro2;
 	private JPanel panelSubmit;
 	private JButton submit;
 		
@@ -130,9 +135,9 @@ public class HomeGUI {
 			mainFrame.add(mainInputs, c);
 			
 			
-			// Visualize inputs
+			// Secondary inputs
 			secondaryInputs = new JPanel();
-			secondaryInputs.setPreferredSize(new Dimension(700, 180));
+			secondaryInputs.setPreferredSize(new Dimension(700, 200));
 						
 			inputX = new JComboBox<String>();
 			inputX.addItem("---");
@@ -187,10 +192,21 @@ public class HomeGUI {
 			auxPanel3.setBorder(new EmptyBorder(10, 0, 10, 0));
 			secondaryInputs.add(auxPanel3);
 			
+			clusteringPanel = new JPanel();
+			clusteringPanel.setPreferredSize(new Dimension(700, 140));
 			inputD.setPreferredSize(new Dimension(230,25));
-			auxPanel4.setBorder(new EmptyBorder(10, 0, 10, 0));
+			auxPanel4.setBorder(new EmptyBorder(25, 0, 10, 0));
+			clusteringPanel.add(auxPanel4);
 			
-			secondaryInputs.setBorder(new LineBorder(Color.black, 1));
+			secondaryInputs.setBorder(new CompoundBorder(
+					new EmptyBorder(20,0,0,0),
+					new LineBorder(Color.black, 1)
+					));
+			
+			clusteringPanel.setBorder(new CompoundBorder(
+					new EmptyBorder(20,0,0,0),
+					new LineBorder(Color.black, 1)
+					));
 			
 			inputAlgoritmo.addActionListener(new ActionListener() {
 				@Override
@@ -198,32 +214,85 @@ public class HomeGUI {
 					if (inputAlgoritmo.getSelectedItem().toString().equals("Visualize")) {
 						c.gridx = 0;
 						c.gridy = 3;
-						mainInputs.setBorder(new EmptyBorder(0,0,25,0));
 						mainInputs.setPreferredSize(new Dimension(700, 175));
-						mainFrame.remove(auxPanel4);
+						mainFrame.remove(clusteringPanel);
 						mainFrame.add(secondaryInputs, c);
 						mainFrame.repaint();
 						mainFrame.revalidate();
 					} else if (inputAlgoritmo.getSelectedItem().toString().equals("Clustering")) {
 						c.gridx = 0;
 						c.gridy = 3;
-						mainInputs.setBorder(new EmptyBorder(0,0,25,0));
 						mainInputs.setPreferredSize(new Dimension(700, 175));
 						mainFrame.remove(secondaryInputs);
-						mainFrame.add(auxPanel4, c);
+						mainFrame.add(clusteringPanel, c);
 						mainFrame.repaint();
 						mainFrame.revalidate();
 					}
 					else {
-						mainInputs.setBorder(null);
 						mainInputs.setPreferredSize(new Dimension(700, 150));
 						mainFrame.remove(secondaryInputs);
+						mainFrame.remove(clusteringPanel);
 						mainFrame.revalidate();
 					}
 				}
 				
 			});
 			
+			// Parámetros filtro
+			parametrosFiltro = new JPanel();
+			JPanel auxPanel5 = new JPanel();
+			JPanel auxPanel6 = new JPanel();
+			
+			parametroFiltro1 = new JFormattedTextField();
+			auxPanel5.setLayout(new GridLayout(2,1));
+			JLabel filtro1 = new JLabel("Parámetro 1");
+			auxPanel5.add(filtro1);
+			auxPanel5.add(parametroFiltro1);
+			parametroFiltro1.setPreferredSize(new Dimension(230,25));
+			
+			parametroFiltro2 = new JFormattedTextField();
+			auxPanel6.setLayout(new GridLayout(2,1));
+			JLabel filtro2 = new JLabel("Parámetro 2");
+			auxPanel6.add(filtro2);
+			auxPanel6.add(parametroFiltro2);
+			parametroFiltro2.setPreferredSize(new Dimension(230,25));
+			
+			JLabel filtroTitulo = new JLabel();
+			filtroTitulo.setText("Filtros");
+			filtroTitulo.setFont(new Font("Georgia", Font.PLAIN, 22));
+			parametrosFiltro.add(auxPanel5);
+			parametrosFiltro.add(auxPanel6);
+			
+			parametrosFiltro.setBorder(new LineBorder(Color.black, 1));
+			parametrosFiltro.setPreferredSize(new Dimension(700,70));
+			
+			JPanel filtros = new JPanel();
+			filtros.setLayout(new GridLayout(2,1));
+			filtros.add(filtroTitulo);
+			filtros.add(parametrosFiltro);
+			
+			inputFiltro.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					if (inputFiltro.getSelectedItem().toString().equals("Filtrar por fecha")) {
+						c.gridx = 0;
+						c.gridy = 4;
+						filtro1.setText("Fecha inicial");
+						filtro2.setText("Fecha final");
+						mainFrame.add(filtros, c);
+					} else if (inputFiltro.getSelectedItem().toString().equals("Filtrar por hora")) {
+						c.gridx = 0;
+						c.gridy = 4;
+						filtro1.setText("Hora inicial");
+						filtro2.setText("Hora final");
+						mainFrame.add(filtros, c);
+					} else {
+						mainFrame.remove(filtros);
+					}
+					mainFrame.repaint();
+					mainFrame.revalidate();
+				}
+			});
 			
 			// Submit btn
 			panelSubmit = new JPanel(new GridBagLayout());
@@ -231,9 +300,10 @@ public class HomeGUI {
 			submit = new JButton();
 			submit.addActionListener(new ResultsAL());
 			submit.setText("Obtener resultados");
-			
+			submit.setFont(new Font("Arial", Font.PLAIN, 18));
+
 			c.gridx = 0;
-			c.gridy = 4;
+			c.gridy = 5;
 			
 			panelSubmit.add(submit);
 			panelSubmit.setPreferredSize(new Dimension(600, 100));
@@ -248,6 +318,22 @@ public class HomeGUI {
 		}
 	}
 	
+	public String getParametroFiltro1() {
+		return parametroFiltro1.getText();
+	}
+
+	public void setParametroFiltro1(JFormattedTextField inputFiltro1) {
+		this.parametroFiltro1 = inputFiltro1;
+	}
+
+	public String getParametroFiltro2() {
+		return parametroFiltro2.getText();
+	}
+
+	public void setParametroFiltro2(JFormattedTextField inputFiltro2) {
+		this.parametroFiltro2 = inputFiltro2;
+	}
+
 	public String getInputFiltro() {
 		return inputFiltro.getSelectedItem().toString();
 	}

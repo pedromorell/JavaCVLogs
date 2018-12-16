@@ -29,7 +29,6 @@ public class ResultsAL implements ActionListener {
 			parametroC = home.getInputC();
 		int numClusters = 0;
 		numClusters = home.getInputD();
-		System.out.println(numClusters);
 		if (home.getInputAlgoritmo().equals("Visualize") && (parametroX.equals("---") || parametroY.equals("---") 
 				|| parametroC.equals("---"))) {
 			JOptionPane.showMessageDialog(null, "Debes seleccionar un valor para cada parámetro.");
@@ -40,49 +39,58 @@ public class ResultsAL implements ActionListener {
 			return;
 		}
 		int x, y, c;
-        switch (parametroX) {
-            case "Fecha":  x = 0;
-                     break;
-            case "Hora": x = 1;
-            		break;
-            case "Id de usuario":  x = 5;
-                     break;
-            default: x = 0;
-                     break;
-        }
-        switch (parametroY) {
-	        case "Contexto":  y = 2;
-	                 break;
-	        case "Componente":  y = 3;
-	                 break;
-	        case "Descripción del evento":  y = 6;
-            		break;
-	        case "Id de módulo":  y = 7;
-            		break;
-	        default: y = 1;
-	                 break;
-        }
-        switch (parametroC) {
-	        case "Contexto":  c = 2;
-			        break;
-			case "Descripción del evento":  c = 6;
-					break;
-			case "Id de módulo":  c = 7;
-					break;
-	        default: c = 1;
-	                 break;
+		
+		x = generarIndice(parametroX);
+		y = generarIndice(parametroY);
+		c = generarIndice(parametroC);
+        
+        String filtroInput = home.getInputFiltro();
+        String filtro;
+        
+        switch (filtroInput) {
+        	case "Filtrar por fecha": filtro = "fecha";
+        			break;
+        	case "Filtrar por hora": filtro = "hora";
+        			break;
+        	default: filtro = "";
+        			break;
         }
         
-        String filtro = home.getInputFiltro();
         Controller controlador = Controller.getInstance();
         
+        String param1 = home.getParametroFiltro1();
+        String param2 = home.getParametroFiltro2();
+        
         if (home.getInputAlgoritmo().equals("Visualize"))
-        	controlador.obtainResultsVisualize(inputF, x, y, c, filtro);
+        	controlador.obtainResultsVisualize(inputF, x, y, c, filtro, param1, param2);
         else if (home.getInputAlgoritmo().equals("Clustering"))
-        	controlador.obtainResultsClustering(inputF, x, y, numClusters, filtro);
+        	controlador.obtainResultsClustering(inputF, x, y, numClusters, filtro, param1, param2);
         
         /*ResultGUI result = new ResultGUI(parametroX, parametroY, parametroC);
 		result.start();*/
+	}
+	
+	private int generarIndice(String parametro) {
+		int i;
+		switch (parametro) {
+	        case "Fecha":  i = 0;
+	                 break;
+	        case "Hora": i = 1;
+	        		break;
+	        case "Contexto":  i = 2;
+	        		break;
+	        case "Componente":  i = 3;
+            		break;
+	        case "Id de usuario":  i = 5;
+	                 break;
+	        case "Descripción del evento":  i = 6;
+					break;
+	        case "Id de módulo":  i = 7;
+					break;
+	        default: i = 0;
+	                 break;
+	    }
+		return i;
 	}
 
 }
