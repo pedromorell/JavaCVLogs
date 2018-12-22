@@ -73,7 +73,7 @@ public class HomeGUI {
 			
 			BufferedImage myPicture;
 			final String dir = System.getProperty("user.dir");
-			myPicture = ImageIO.read(new File(dir + "\\src\\logo.png"));
+			myPicture = ImageIO.read(new File(dir + "\\logo.png"));
 			BufferedImage resize = resize(myPicture, 140, 450);
 			JLabel logo = new JLabel(new ImageIcon(resize));			
 			logoPanel.add(logo);
