@@ -17,32 +17,40 @@ public class ResultsAL implements ActionListener {
 		String inputF = home.getInputFichero();
 		String inputA = home.getInputAlgoritmo();
 		
+		int numClusters = 0;
+		int x = 0, y = 0, c = 0;
+		
 		if (inputF.equals("---") || inputA.equals("---")) {
 			JOptionPane.showMessageDialog(null, "Debes seleccionar un fichero y un algoritmo.");
 			return;
 		}
 		
-		String parametroX = home.getInputX();
-		String parametroY = home.getInputY();
-		String parametroC = "";
-		if (home.getInputC() != null)
-			parametroC = home.getInputC();
-		int numClusters = 0;
-		numClusters = home.getInputD();
-		if (home.getInputAlgoritmo().equals("Visualize") && (parametroX.equals("---") || parametroY.equals("---") 
-				|| parametroC.equals("---"))) {
-			JOptionPane.showMessageDialog(null, "Debes seleccionar un valor para cada parámetro.");
-			return;
-		}
-		if (home.getInputAlgoritmo().equals("Clustering") && numClusters <= 0) {
-			JOptionPane.showMessageDialog(null, "El número de clusters debe ser mayor que cero.");
-			return;
-		}
-		int x, y, c;
+		if (home.getInputAlgoritmo().equals("Visualize")) {
 		
-		x = generarIndice(parametroX);
-		y = generarIndice(parametroY);
-		c = generarIndice(parametroC);
+			String parametroX = home.getInputX();
+			String parametroY = home.getInputY();
+			String parametroC = "";
+			if (home.getInputC() != null)
+				parametroC = home.getInputC();
+			
+			if (parametroX.equals("---") || parametroY.equals("---") 
+					|| parametroC.equals("---")) {
+				JOptionPane.showMessageDialog(null, "Debes seleccionar un valor para cada parámetro.");
+				return;
+			}
+			
+			x = generarIndice(parametroX);
+			y = generarIndice(parametroY);
+			c = generarIndice(parametroC);
+		}
+		
+		if (home.getInputAlgoritmo().equals("Clustering")) {
+			numClusters = home.getInputD();
+			if (numClusters <= 0) {
+				JOptionPane.showMessageDialog(null, "El número de clusters debe ser mayor que cero.");
+				return;
+			}
+		}
         
         String filtroInput = home.getInputFiltro();
         String filtro;
@@ -64,10 +72,8 @@ public class ResultsAL implements ActionListener {
         if (home.getInputAlgoritmo().equals("Visualize"))
         	controlador.obtainResultsVisualize(inputF, x, y, c, filtro, param1, param2);
         else if (home.getInputAlgoritmo().equals("Clustering"))
-        	controlador.obtainResultsClustering(inputF, x, y, numClusters, filtro, param1, param2);
+        	controlador.obtainResultsClustering(inputF,numClusters, filtro, param1, param2);
         
-        /*ResultGUI result = new ResultGUI(parametroX, parametroY, parametroC);
-		result.start();*/
 	}
 	
 	private int generarIndice(String parametro) {

@@ -53,10 +53,9 @@ public class WekaDriver {
 			e.printStackTrace();
 		}
 		
-		
 	}
 	
-	public void clustering(int x, int y, int numClusters) {
+	public void clustering(int numClusters) {
 		CSVLoader loader = new CSVLoader();
 		File file = new File("LogsAmpliado.csv");
 		try {

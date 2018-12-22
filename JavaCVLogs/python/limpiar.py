@@ -33,18 +33,19 @@ with open('LogsAmpliado.csv', 'wb') as csvfile:
 
                 analizar = True
 
-                if (sys.argv[2] == "fecha"):
-                   fechaInicio = datetime(int(sys.argv[3][6:]),int(sys.argv[3][3:5]),int(sys.argv[3][0:2]))
-                   fechaFin = datetime(int(sys.argv[4][6:]),int(sys.argv[4][3:5]),int(sys.argv[4][0:2]))
-                   if (fechaInicio > datetime(int(fecha[6:]),int(fecha[3:5]),int(fecha[0:2])) or datetime(int(fecha[6:]),int(fecha[3:5]),int(fecha[0:2])) > fechaFin):
-                           analizar = False
+                if (len(sys.argv) > 2):
+                        if (sys.argv[2] == "fecha"):
+                                fechaInicio = datetime(int(sys.argv[3][6:]),int(sys.argv[3][3:5]),int(sys.argv[3][0:2]))
+                                fechaFin = datetime(int(sys.argv[4][6:]),int(sys.argv[4][3:5]),int(sys.argv[4][0:2]))
+                                if (fechaInicio > datetime(int(fecha[6:]),int(fecha[3:5]),int(fecha[0:2])) or datetime(int(fecha[6:]),int(fecha[3:5]),int(fecha[0:2])) > fechaFin):
+                                        analizar = False
 
-                if (sys.argv[2] == "hora"):
-                        now = datetime.now()
-                        horaInicio = datetime(now.year,now.month,now.day,int(sys.argv[3][0:2]),int(sys.argv[3][3:])).time()
-                        horaFinal = datetime(now.year,now.month,now.day,int(sys.argv[4][0:2]),int(sys.argv[4][3:])).time()
-                        if (horaInicio > datetime(now.year,now.month,now.day,int(hora[0:2]),int(hora[3:])).time() or datetime(now.year,now.month,now.day,int(hora[0:2]),int(hora[3:])).time() > horaFinal):
-                                analizar = False
+                        if (sys.argv[2] == "hora"):
+                                now = datetime.now()
+                                horaInicio = datetime(now.year,now.month,now.day,int(sys.argv[3][0:2]),int(sys.argv[3][3:])).time()
+                                horaFinal = datetime(now.year,now.month,now.day,int(sys.argv[4][0:2]),int(sys.argv[4][3:])).time()
+                                if (horaInicio > datetime(now.year,now.month,now.day,int(hora[0:2]),int(hora[3:])).time() or datetime(now.year,now.month,now.day,int(hora[0:2]),int(hora[3:])).time() > horaFinal):
+                                        analizar = False
 
                 if (analizar):
                         # Inicialización de los tres campos nuevos.

@@ -16,12 +16,12 @@ public class Controller {
 			
 	}
 	
-	public void obtainResultsClustering(String fichero, int x, int y, int numClusters, String filtro, String param1, String param2) {
+	public void obtainResultsClustering(String fichero, int numClusters, String filtro, String param1, String param2) {
 		LogsCleaner main = new LogsCleaner();
 		main.cleanLogs(fichero, filtro, param1, param2);
 		
 		WekaDriver weka = new WekaDriver();
-		weka.clustering(x, y, numClusters);
+		weka.clustering(numClusters);
 	}
 	
 	public static Controller getInstance() {
