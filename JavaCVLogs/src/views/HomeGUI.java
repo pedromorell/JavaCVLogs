@@ -61,7 +61,6 @@ public class HomeGUI {
 		setUIFont (new javax.swing.plaf.FontUIResource("Arial",Font.PLAIN,14));
 
 		mainFrame = new JFrame("Home");
-		//mainFrame.setMinimumSize(new Dimension(900,700));
 		mainFrame.setLocationRelativeTo(null);
 		mainFrame.setLayout(new GridBagLayout());
 		
@@ -143,16 +142,27 @@ public class HomeGUI {
 			inputX.addItem("---");
 			inputX.addItem("Fecha");
 			inputX.addItem("Hora");
+			inputX.addItem("Contexto");
+			inputX.addItem("Componente");
 			inputX.addItem("Id de usuario");
+			inputX.addItem("Descripción del evento");
+			inputX.addItem("Id de módulo");
 			inputY = new JComboBox<String>();
 			inputY.addItem("---");
+			inputY.addItem("Fecha");
+			inputY.addItem("Hora");
 			inputY.addItem("Contexto");
 			inputY.addItem("Componente");
+			inputY.addItem("Id de usuario");
 			inputY.addItem("Descripción del evento");
 			inputY.addItem("Id de módulo");
 			inputC = new JComboBox<String>();
 			inputC.addItem("---");
+			inputC.addItem("Fecha");
+			inputC.addItem("Hora");
 			inputC.addItem("Contexto");
+			inputC.addItem("Componente");
+			inputC.addItem("Id de usuario");
 			inputC.addItem("Descripción del evento");
 			inputC.addItem("Id de módulo");
 			inputD = new JFormattedTextField(NumberFormat.getNumberInstance());
