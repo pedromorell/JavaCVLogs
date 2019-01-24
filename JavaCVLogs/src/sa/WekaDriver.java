@@ -9,6 +9,9 @@ import weka.clusterers.ClusterEvaluation;
 import weka.clusterers.SimpleKMeans;
 import weka.core.Instances;
 import weka.core.converters.CSVLoader;
+import weka.filters.Filter;
+import weka.filters.unsupervised.attribute.Remove;
+import weka.filters.unsupervised.attribute.SortLabels;
 import weka.gui.explorer.ClustererAssignmentsPlotInstances;
 import weka.gui.visualize.JPEGWriter;
 import weka.gui.visualize.PlotData2D;
@@ -22,6 +25,13 @@ public class WekaDriver {
 		try {
 			loader.setSource(file);
 			Instances data = loader.getDataSet();
+			
+			SortLabels sort = new SortLabels();	
+			sort.setAttributeIndices("2");
+			sort.setInputFormat(data);
+			
+			data = Filter.useFilter(data, sort);
+			
 			PlotData2D pd1 = new PlotData2D(data);
 			pd1.m_displayAllPoints = true;
 			
@@ -40,7 +50,7 @@ public class WekaDriver {
 			jf.setVisible(true);
 			
 			// Guardar diagrama en fichero jpg
-			File file1 = new File("src\\imagen.jpg");
+			File file1 = new File("imagen.jpg");
 			JPEGWriter writer = new JPEGWriter(vp, file1);
 			writer.generateOutput();
 			
@@ -61,6 +71,12 @@ public class WekaDriver {
 		try {
 			loader.setSource(file);
 			Instances data = loader.getDataSet();
+			
+			SortLabels sort = new SortLabels();	
+			sort.setAttributeIndices("2");
+			sort.setInputFormat(data);
+			
+			data = Filter.useFilter(data, sort);
 			
 			SimpleKMeans kmeans = new SimpleKMeans();
 	        kmeans.setNumClusters(numClusters);
@@ -89,7 +105,7 @@ public class WekaDriver {
 			jf.setVisible(true);
 			
 			// Guardar diagrama en fichero jpg
-			File file1 = new File("src\\imagen.jpg");
+			File file1 = new File("imagen.jpg");
 			JPEGWriter writer = new JPEGWriter(vp, file1);
 			writer.generateOutput();
 	        

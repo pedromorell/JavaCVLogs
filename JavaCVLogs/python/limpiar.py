@@ -8,16 +8,16 @@ from datetime import datetime, timedelta
 workbook = xlrd.open_workbook('./python/ficheros/' + sys.argv[1] + '.xlsx')
 worksheet = workbook.sheet_by_index(0)
 num_rows = worksheet.nrows - 1
-curr_row = 0
+curr_row = num_rows
 
 with open('LogsAmpliado.csv', 'wb') as csvfile:
         spamwriter = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL)
         spamwriter.writerow(["fecha", "hora", "contexto", "componente", "nombre", "user id", "descripcion", "module id"])
         # Escritura en csv con las columnas ampliadas de la descripción
-        while curr_row < num_rows:
+        while curr_row >= 0:
 
                 # Indice++
-                curr_row += 1
+                curr_row -= 1
                 
                 # Inicialización de los campos ya existentes
                 fecha = worksheet.cell_value(rowx=curr_row, colx=0)
